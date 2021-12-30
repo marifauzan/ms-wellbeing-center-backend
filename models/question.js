@@ -1,7 +1,7 @@
 module.exports = (mongoose) => {
   let questionsSchema = mongoose.Schema(
     {
-      answers: {
+      answer: {
         type: mongoose.Types.ObjectId,
         ref: "answers",
       },
@@ -9,12 +9,7 @@ module.exports = (mongoose) => {
         type: String,
         required: true,
       },
-      //belum yg ini choices[id_ansewer]
-      choices: {
-        type: Enum,
-        required: true,
-      //-----
-      },
+      choices: [1, 2, 3],
     },
     {
       timestamps: true,
