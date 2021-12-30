@@ -21,6 +21,7 @@ app.use(express.json());
 require("./routes/users")(app);
 // require("./routes/courses")(app);
 // require("./routes/participants")(app);
+require("./routes/questions")(app);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
