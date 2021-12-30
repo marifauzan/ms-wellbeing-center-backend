@@ -19,6 +19,10 @@ db.mongoose
 app.use(express.json());
 
 require("./routes/users")(app);
+require("./routes/questions")(app);
+require("./routes/answers")(app);
+require("./routes/result_parameter")(app);
+require("./routes/result_from_question")(app);
 // require("./routes/courses")(app);
 // require("./routes/participants")(app);
 
