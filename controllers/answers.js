@@ -25,7 +25,7 @@ exports.findAll = (req, res) => {
 };
 
 exports.create = (req, res) => {
-  if (!req.body.username) {
+  if (!req.body.answer) {
     res
       .status(400)
       .send({ success: false, message: "Content can not be empty!" });
