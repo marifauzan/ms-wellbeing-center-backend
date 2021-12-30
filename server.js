@@ -18,7 +18,7 @@ db.mongoose
 
 app.use(express.json());
 
-// require("./routes/instructors")(app);
+require("./routes/users")(app);
 // require("./routes/courses")(app);
 // require("./routes/participants")(app);
 
