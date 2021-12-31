@@ -8,5 +8,9 @@ const db = {};
 db.mongoose = mongoose;
 db.url = `${process.env.DB_URL}`;
 db.users = require("./user")(mongoose);
+db.questions = require("./question")(mongoose);
+db.answers = require("./answer")(mongoose);
+db.result_parameter = require("./result_parameter")(mongoose);
+db.resutl_from_questions = require("./result_from_question")(mongoose);
 
 module.exports = db;
