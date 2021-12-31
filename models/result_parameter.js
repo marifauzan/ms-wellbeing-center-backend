@@ -18,6 +18,6 @@ module.exports = (mongoose) => {
     },
   });
 
-  const ResultParam = mongoose.model("user", resultParamSchema);
+  const ResultParam = mongoose.model("result_parameter", resultParamSchema);
   return ResultParam;
 };
