@@ -23,6 +23,6 @@ module.exports = (mongoose) => {
     }
   );
 
-  const ResultFromQuestion = mongoose.model("user", resultfromQuestionSchema);
+  const ResultFromQuestion = mongoose.model("result_from_question", resultfromQuestionSchema);
   return ResultFromQuestion;
 };
