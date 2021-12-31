@@ -23,8 +23,6 @@ require("./routes/questions")(app);
 require("./routes/answers")(app);
 require("./routes/result_parameter")(app);
 require("./routes/result_from_question")(app);
-// require("./routes/courses")(app);
-// require("./routes/participants")(app);
 
 
 app.listen(port, () => {
