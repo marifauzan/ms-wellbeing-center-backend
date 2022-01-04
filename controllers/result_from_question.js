@@ -35,7 +35,7 @@ exports.findAll = (req, res) => {
 };
 
 exports.create = (req, res) => {
-  if (!req.body.question) {
+  if (!req.body.total_score) {
     res
       .status(400)
       .send({ success: false, message: "Content can not be empty!" });

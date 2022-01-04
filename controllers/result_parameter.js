@@ -2,7 +2,7 @@ const db = require("../models");
 const ResultParam = db.result_parameter;
 
 exports.findAll = (req, res) => {
-  const conditions = req.query.conditions;
+  const conditions = req.query.condition;
   let condition = conditions
     ? { conditions: { $regex: new RegExp(conditions), $options: "i" } }
     : {};
@@ -25,7 +25,7 @@ exports.findAll = (req, res) => {
 };
 
 exports.create = (req, res) => {
-  if (!req.body.conditions) {
+  if (!req.body.condition) {
     res
       .status(400)
       .send({ success: false, message: "Content can not be empty!" });
