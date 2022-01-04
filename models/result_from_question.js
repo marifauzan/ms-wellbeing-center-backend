@@ -1,20 +1,16 @@
 module.exports = (mongoose) => {
   let resultfromQuestionSchema = mongoose.Schema(
     {
-      username: {
+      user: {
         type: mongoose.Types.ObjectId,
-        ref: "users",
+        ref: "user",
       },
-      condition: {
+      result_parameter: {
         type: mongoose.Types.ObjectId,
         ref: "result_parameter",
       },
       total_score: {
         type: Number,
-        required: true,
-      },
-      description: {
-        type: String,
         required: true,
       },
     },
@@ -23,6 +19,9 @@ module.exports = (mongoose) => {
     }
   );
 
-  const ResultFromQuestion = mongoose.model("result_from_question", resultfromQuestionSchema);
+  const ResultFromQuestion = mongoose.model(
+    "result_from_question",
+    resultfromQuestionSchema
+  );
   return ResultFromQuestion;
 };

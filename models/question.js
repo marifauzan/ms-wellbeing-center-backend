@@ -7,7 +7,7 @@ module.exports = (mongoose) => {
     choices: [
       {
         type: mongoose.Types.ObjectId,
-        ref: "answers",
+        ref: "answer",
       },
     ],
   });

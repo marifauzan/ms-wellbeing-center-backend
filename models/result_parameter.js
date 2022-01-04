@@ -1,6 +1,6 @@
 module.exports = (mongoose) => {
   let resultParamSchema = mongoose.Schema({
-    condition: {
+    condition_parameter: {
       type: String,
       required: true,
     },

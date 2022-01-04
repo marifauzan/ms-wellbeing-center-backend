@@ -2,19 +2,19 @@ const db = require("../models");
 const ResultFromQuestion = db.result_from_questions;
 
 exports.findAll = (req, res) => {
-  const total_score = req.query.total_score;
-  let condition = total_score
-    ? { total_score: { $regex: new RegExp(total_score), $options: "i" } }
-    : {};
+  // const user = req.query.user;
+  // let condition = user
+  //   ? { user: { $regex: new RegExp(user), $options: "i" } }
+  //   : {};
 
-  ResultFromQuestion.find(condition)
+  ResultFromQuestion.find()
     .populate({
-      path: "users",
-      select: "username",
-      populate: {
-        path: "result_parameter",
-        select: "condition",
-      },
+      path: "user",
+      select: "-__v",
+    })
+    .populate({
+      path: "result_parameter",
+      select: "-__v",
     })
     .then((data) => {
       res.send({
@@ -35,7 +35,7 @@ exports.findAll = (req, res) => {
 };
 
 exports.create = (req, res) => {
-  if (!req.body.question) {
+  if (!req.body.user) {
     res
       .status(400)
       .send({ success: false, message: "Content can not be empty!" });
