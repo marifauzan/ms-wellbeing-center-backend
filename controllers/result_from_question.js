@@ -66,8 +66,12 @@ exports.findOne = (req, res) => {
 
   ResultFromQuestion.findById(id)
     .populate({
-      path: "answers",
-      select: "answer",
+      path: "user",
+      select: "-__v",
+    })
+    .populate({
+      path: "result_parameter",
+      select: "-__v",
     })
     .then((data) => {
       if (!data)
