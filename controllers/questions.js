@@ -9,8 +9,8 @@ exports.findAll = (req, res) => {
 
   Question.find(condition)
     .populate({
-      path: "answers",
-      select: "answer",
+      path: "choices",
+      select: "-__v",
     })
     .then((data) => {
       res.send({
@@ -60,8 +60,8 @@ exports.findOne = (req, res) => {
 
   Question.findById(id)
     .populate({
-      path: "answers",
-      select: "answer",
+      path: "choices",
+      select: "-__v",
     })
     .then((data) => {
       if (!data)
