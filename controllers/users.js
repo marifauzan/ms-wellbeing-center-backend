@@ -1,5 +1,7 @@
 const db = require("../models");
 const User = db.users;
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 
 exports.findAll = (req, res) => {
   const username = req.query.username;
@@ -132,4 +134,61 @@ exports.delete = (req, res) => {
         data: {},
       });
     });
+};
+
+exports.login = async (req, res) => {
+  try {
+    const dataLogin = req.body;
+    const user = await User.findOne({ email: dataLogin.email });
+
+    if (user) {
+      const validatePassword = bcrypt.compareSync(
+        dataLogin.password,
+        user.password
+      );
+
+      if (validatePassword) {
+        const { password, ...rest } = user.toObject();
+        const token = jwt.sign(rest, process.env.ACCESS_TOKEN_SECRET);
+
+        return res.send({
+          success: true,
+          message: "Login successfully",
+          data: token,
+        });
+      }
+    }
+
+    res.send({
+      success: false,
+      message: "Email or password invalid",
+    });
+  } catch (error) {
+    res.send({
+      success: false,
+      message: error.message || "Internal server error",
+    });
+  }
+};
+
+exports.register = async (req, res) => {
+  try {
+    const dataRegister = req.body;
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(dataRegister.password, salt);
+
+    dataRegister.password = hash;
+
+    await User.create(dataRegister);
+
+    res.send({
+      success: true,
+      message: "User has been registered",
+    });
+  } catch (error) {
+    res.send({
+      success: false,
+      message: error.message || "Internal server error",
+    });
+  }
 };
