@@ -1,4 +1,5 @@
 const express = require("express");
+const validateToken = require("./middlewares/tokenValidation");
 const db = require("./models");
 const app = express();
 const port = process.env.PORT || 3000;
@@ -18,8 +19,11 @@ db.mongoose
 
 app.use(express.json());
 
-require("./routes/users")(app);
 require("./routes/authentication")(app);
+
+app.use(validateToken);
+
+require("./routes/users")(app);
 require("./routes/questions")(app);
 require("./routes/answers")(app);
 require("./routes/result_parameter")(app);
