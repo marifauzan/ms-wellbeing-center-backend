@@ -7,7 +7,7 @@ const validateToken = (req, res, next) => {
 
   if (token) {
     try {
-      const payload = jwt.verify(token, process.env.JWT_KEY);
+      const payload = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
 
       req.payload = payload;
 
