@@ -2,9 +2,14 @@ const db = require("../models");
 const ResultParam = db.result_parameter;
 
 exports.findAll = (req, res) => {
-  const conditions = req.query.conditions;
-  let condition = conditions
-    ? { conditions: { $regex: new RegExp(conditions), $options: "i" } }
+  const condition_parameter = req.query.condition_parameter;
+  let condition = condition_parameter
+    ? {
+        condition_parameter: {
+          $regex: new RegExp(condition_parameter),
+          $options: "i",
+        },
+      }
     : {};
 
   ResultParam.find(condition)
@@ -18,14 +23,15 @@ exports.findAll = (req, res) => {
     .catch((err) => {
       res.status(500).send({
         success: false,
-        message: err.message || "Some error occured while retrieving ResultParam.",
+        message:
+          err.message || "Some error occured while retrieving ResultParam.",
         data: {},
       });
     });
 };
 
 exports.create = (req, res) => {
-  if (!req.body.conditions) {
+  if (!req.body.condition_parameter) {
     res
       .status(400)
       .send({ success: false, message: "Content can not be empty!" });
@@ -43,7 +49,8 @@ exports.create = (req, res) => {
     .catch((err) => {
       res.status(500).send({
         success: false,
-        message: err.message || "Some error occured while creating the ResultParams",
+        message:
+          err.message || "Some error occured while creating the ResultParams",
         data: {},
       });
     });
