@@ -1,5 +1,73 @@
 # API Specification
 
+## Create Account (Register)
+
+Request :
+
+- Method : POST
+- Endpoint : `/register`
+- Header :
+  - Content-Type: application/json
+  - Accept: application/json
+- Body :
+
+```json
+{
+  "username": "string",
+  "password": "string",
+  "nama": "string",
+  "email": "string",
+  "photo": "string"
+}
+```
+
+Response :
+
+```json
+{
+  "success": "boolean",
+  "message": "string",
+  "data": {
+    "username": "string",
+    "password": "string",
+    "nama": "string",
+    "email": "string",
+    "photo": "string",
+    "_id": "string, unique",
+    "createdAt": "date",
+    "updatedAt": "date",
+    "__v": "number"
+  }
+}
+```
+## Create Token (Login)
+
+Request :
+
+- Method : POST
+- Endpoint : `/login`
+- Header :
+  - Content-Type: application/json
+  - Accept: application/json
+- Body :
+
+```json
+{
+  "password": "string",
+  "email": "string",
+}
+```
+
+Response :
+
+```json
+{
+  "success": "boolean",
+  "message": "string",
+  "data": "string, unique"
+}
+```
+
 ## Create Users
 
 Request :
