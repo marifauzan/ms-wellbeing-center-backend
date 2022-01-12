@@ -1,5 +1,7 @@
 # API Specification
 
+Dokumentasi API = https://documenter.getpostman.com/view/18634031/UVXerxnB
+
 ## Create Account (Register)
 
 Request :
