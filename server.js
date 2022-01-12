@@ -1,8 +1,9 @@
 const express = require("express");
+const cors = require("cors");
 const validateToken = require("./middlewares/tokenValidation");
 const db = require("./models");
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 db.mongoose
   .connect(db.url, {
@@ -18,6 +19,7 @@ db.mongoose
   });
 
 app.use(express.json());
+app.use(cors());
 
 require("./routes/authentication")(app);
 
