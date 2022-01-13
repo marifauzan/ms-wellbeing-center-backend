@@ -139,8 +139,9 @@ exports.delete = (req, res) => {
 exports.login = async (req, res) => {
   try {
     const dataLogin = req.body;
+    console.log(dataLogin);
     const user = await User.findOne({ email: dataLogin.email });
-
+    console.log(user);
     if (user) {
       const validatePassword = bcrypt.compareSync(
         dataLogin.password,
