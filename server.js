@@ -21,6 +21,13 @@ db.mongoose
 app.use(express.json());
 app.use(cors());
 
+app.get("/", (req, res) => {
+  res.status(200).send({
+    success: true,
+    message: "OK",
+  });
+});
+
 require("./routes/authentication")(app);
 
 app.use(validateToken);
