@@ -35,6 +35,8 @@ exports.findAll = (req, res) => {
 };
 
 exports.create = (req, res) => {
+  req.body["user"] = req.payload["_id"];
+
   if (!req.body.user) {
     res
       .status(400)
